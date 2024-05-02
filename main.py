@@ -23,7 +23,7 @@ nlp = spacy.load("en_core_web_sm")
 page_extractor = PageExtractor(
         preprocessors = [
             Resizer(height = 2160, output_process = True), 
-            RotationCorrector(),
+            # RotationCorrector(),
             FastDenoiser(strength = 5, output_process = True),
             OtsuThresholder(output_process = True),
         ],

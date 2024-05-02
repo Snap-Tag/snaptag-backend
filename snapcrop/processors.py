@@ -107,7 +107,7 @@ class Resizer:
 
 class OtsuThresholder:
     
-    def __init__(self, thresh1 = 0, thresh2 = 250, output_process = False):
+    def __init__(self, thresh1 = 50, thresh2 = 250, output_process = False):
         self.output_process = output_process
         self.thresh1 = thresh1
         self.thresh2 = thresh2
@@ -116,7 +116,7 @@ class OtsuThresholder:
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
         image = cv2.bitwise_not(image)
-        image = cv2.dilate(image, kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (2,2)))
+        image = cv2.dilate(image, kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (2,3)))
         image = cv2.bitwise_not(image)
 
         T_, thresholded = cv2.threshold(image, self.thresh1, self.thresh2, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
