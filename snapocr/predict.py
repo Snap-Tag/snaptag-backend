@@ -2,7 +2,6 @@ from torchvision import transforms
 import torch
 
 from snapocr.segmentation import segment_text
-import pytesseract as text_cleaner
 from .model import CNNModel
 from PIL import Image
 
@@ -70,19 +69,7 @@ def recognize(image):
             word_list.append("".join(char_list))
         text_list.append("".join(word_list))
 
-    # return predicted_output
-
-    text = text_cleaner.image_to_string(image)
-    recognized_text = ""
-    for char in text:
-        if char in character_classes.values():
-            recognized_text += char
-        if char == "\n":
-            recognized_text += " "
-        if char == " ":
-            recognized_text += " "
-    return recognized_text.strip()
-
+    return " ".join(text_list)
 
 
 if __name__ == "__main__":
